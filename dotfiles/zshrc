@@ -1,0 +1,73 @@
+# Get the current git branch
+parse_git_branch() {
+ref=$(git symbolic-ref HEAD 2> /dev/null | cut -d'/' -f3)
+
+if [ -n "$ref" ]; then echo "[$ref]"; fi
+}
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/alex/.zshrc'
+
+autoload bashcompinit
+bashcompinit
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# set up colors so tmux doesn't die
+export TERM=xterm-256color
+
+# Set up theme
+ZSH_THEME="doubleend"
+
+# Set up plugins
+plugins=(git)
+
+# Make sure prompt is set to autoload
+autoload -U promptinit
+promptinit
+
+export EDITOR="vim"
+
+# Git town
+export PATH=/home/alex/packages/git-town/src/:$PATH
+export MANPATH=/home/alex/packages/git-town/man/:$MANPATH
+
+export PATH=/home/alex/.nvm/versions/node/v0.12.1/bin/:$PATH
+
+# Fix rust (needs this exported)
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
+
+# nvm
+source ~/.nvm/nvm.sh
+nvm use 0.12 1> /dev/null
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# python
+export PYTHON=python2.7
+
+# Karma
+export CHROME_BIN=google-chrome-stable
+
+# Maybe fix jave applets & xmonad
+_JAVA_AWT_WM_NONREPARENTING=1
+
+# Set up colors
+autoload -U colors && colors
+
+# Set up custom prompt
+setopt PROMPT_SUBST
+
+RPROMPT='%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}'
+PROMPT="%{$fg[white]%}┌[%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}]─[%{$fg[green]%}%d%{$reset_color%}]
+└─╼ "
