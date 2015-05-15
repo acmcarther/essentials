@@ -10,6 +10,7 @@ xsetroot -cursor_name left_ptr
 
 xset r rate 300 30
 
+xbindkeys
 
 #scripts/wp slideshow &
 #~/bar_start.sh &
