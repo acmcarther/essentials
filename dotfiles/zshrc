@@ -37,8 +37,8 @@ promptinit
 export EDITOR="vim"
 
 # Git town
-export PATH=/home/alex/packages/git-town/src/:$PATH
-export MANPATH=/home/alex/packages/git-town/man/:$MANPATH
+export PATH=/home/alex/repos/git-town/src/:$PATH
+export MANPATH=/home/alex/repos/git-town/man/:$MANPATH
 
 export PATH=/home/alex/.nvm/versions/node/v0.12.1/bin/:$PATH
 
@@ -58,6 +58,10 @@ export PYTHON=python2.7
 
 # Karma
 export CHROME_BIN=google-chrome-stable
+
+# Tools
+export PATH="$HOME/essentials/scripts/tools:$PATH"
+
 
 # Maybe fix jave applets & xmonad
 _JAVA_AWT_WM_NONREPARENTING=1

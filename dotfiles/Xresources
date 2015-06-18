@@ -35,8 +35,8 @@ URxvt*loginShell: true
 ! URxvt*pointerBlank:                   boolean
 !URxvt*background:                      rgba:1000/2a00/3b00/ffff
 
-!URxvt*background:  #0A1924  
-URxvt*background:  #000000  
+URxvt*background:  #0A1924  
+!URxvt*background:  #000000  
 URxvt*foreground: #DEDEDE  
 
 URxvt*colorUL: #86a2b0  
@@ -106,10 +106,10 @@ Xft.hinting:    1
 Xft.hintstyle:  hintslight
 Xft.rgba:       rgb
 xterm*faceName: Liberation Mono
-xterm*faceSize: 7 7 7 7 7 7 7
+xterm*faceSize: 11 11 11 11 11 11 11
 !URxvt*font: xft:Liberation Mono-8
 !URxvt*boldFont: xft:Liberation Mono:bold
-URxvt*font: xft:Ubuntu Mono-8
+URxvt*font: xft:Ubuntu Mono-11
 URxvt*boldFont: xft:Ubuntu Mono:bold
 URxvt.letterSpace: -1
 
