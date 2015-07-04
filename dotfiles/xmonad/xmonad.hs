@@ -132,8 +132,8 @@ newManageHook = myManageHook
 
 myLogHook h = dynamicLogWithPP ( defaultPP
     { ppCurrent = changeColor F (toBarC color13) . makeClickable
-    , ppVisible = pad . makeClickable
-    , ppHidden  = makeClickable
+    , ppVisible = changeColor F (toBarC color4) . pad . makeClickable
+    , ppHidden  = changeColor F (toBarC color3) . makeClickable
     , ppUrgent  = changeColor B (toBarC color3)  . makeClickable
     , ppHiddenNoWindows = makeClickable . takeWhile (/= '.')
     , ppWsSep   = " | "
@@ -159,7 +159,7 @@ scratchpads = [ NS "htop" "urxvt -name htop -e htop" (resource =? "htop") defaul
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
 myXmonadBar :: String
-myXmonadBar = "lemonbar -f \"-benis-uushi-medium-r-normal--11-90-75-75-p-58-iso10646-1\" -B \"black\" | bash"
+myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | lemonbar -f \"Ubuntu Mono:medium:pixelsize=15\" -f \"FontAwesome:medium:pixelsize=13\" -B \"black\" | bash"
 
 restartXmonad = "killall lemonbar; cd ~/.xmonad; ghc -threaded xmonad.hs; mv xmonad xmonad-x86_64-linux; xmonad --restart;"
 
@@ -183,7 +183,7 @@ main = do
     , workspaces         = myWorkspaces
     , manageHook         = newManageHook
     , handleEventHook    = fullscreenEventHook <+> docksEventHook
-    , startupHook        = setWMName "LG3D" >> spawn "~/essentials/scripts/lemonbar/bar_start.sh"
+    , startupHook        = setWMName "LG3D"
     , logHook            = myLogHook bar  >> fadeInactiveLogHook 0.9
     }
 --------------------------------------------------------------------------------------------------------------------
@@ -279,18 +279,18 @@ myFont = "-*-tamsyn-medium-r-normal-*-12-87-*-*-*-*-*-*"
 background = "#181512"
 foreground = "#d6c3b6"
 color0     = "#332d29"
-color1     = "#8c644c"
-color2     = "#746c48"
-color3     = "#bfba92"
-color4     = "#646a6d"
-color5     = "#766782"
-color6     = "#4b5c5e"
-color7     = "#504339"
-color8     = "#817267"
-color9     = "#9f7155"
-color10    = "#9f7155"
-color11    = "#e0daac"
-color12    = "#777eb2"
-color13    = "#897796"
-color14    = "#556d70"
+color1     = "#8c644c" -- dark brown auburn
+color2     = "#746c48" -- dark greenish grey
+color3     = "#bfba92" -- light grey green
+color4     = "#646a6d" -- dark metal grey
+color5     = "#766782" -- purple
+color6     = "#4b5c5e" -- dark bluish grey
+color7     = "#504339" -- very dark brown
+color8     = "#817267" -- dark grey
+color9     = "#9f7155" -- light brown
+color10    = "#9f7155" -- still light brown
+color11    = "#e0daac" -- light greenish grey
+color12    = "#777eb2" -- light blue
+color13    = "#897796" -- light blueish purple
+color14    = "#556d70" -- dark grey blue
 color15    = "#9a875f"
