@@ -50,9 +50,7 @@ memused() {
 
 wifi() {
   current_wifi=$(iwconfig wlp2s0 | awk -F "\"" '/wlp2s0/ { print $2 }')
-  if [ $current_wifi != "" ]; then
-    echo "%{F#FFB8D4DC}$wifi_icon $current_wifi%{F#FF6A9FB5} |"
-  fi
+  echo "%{F#FFB8D4DC}$wifi_icon $current_wifi%{F#FF6A9FB5} |"
 }
 
 groups() {
