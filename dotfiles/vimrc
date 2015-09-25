@@ -31,6 +31,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'takac/vim-hardtime'
 Plugin 'slim-template/vim-slim'
 Plugin 'wting/rust.vim'
+Plugin 'lambdatoast/elm.vim'
 
 Plugin 'myusuf3/numbers.vim'
 
@@ -62,6 +63,7 @@ let g:airline#extensions#tabline#enabled=1
 let g:syntastic_ruby_checkers  = ['mri']
 let g:syntastic_enable_highlighting=0
 
+
 " Maybe fix slim
 autocmd FileType slim setlocal foldmethod=indent
 autocmd BufNewFile,BufRead *.slim set filetype=slim
@@ -69,6 +71,9 @@ autocmd BufNewFile,BufRead *.slim set filetype=slim
 " Fix rust
 autocmd FileType rust setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.rs set filetype=rust
+
+" Fix elm
+autocmd BufRead,BufNewFile *.elm set filetype=elm
 
 " Fix coffee
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
@@ -193,6 +198,8 @@ set expandtab
 
 let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
 let g:rspec_runner = "os_x_iterm"
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
