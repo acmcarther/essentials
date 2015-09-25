@@ -49,6 +49,8 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 source ~/.nvm/nvm.sh
 nvm use 0.12 1> /dev/null
 
+source ~/.zsh_env
+
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -71,6 +73,28 @@ autoload -U colors && colors
 
 # Set up custom prompt
 setopt PROMPT_SUBST
+
+
+function npm_chpwd_hook() {
+  npmpath="$(npm bin)"
+
+  if [ -d "$npmpath" ]; then
+    PATH=$npmpath:$prenpmpath
+  else
+    PATH=$prenpmpath
+  fi
+
+  export PATH=$PATH
+}
+
+export prenpmpath=$PATH
+export GTK_IM_MODULE=xim
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=xim
+
+autoload -Uz add-zsh-hook
+
+add-zsh-hook preexec npm_chpwd_hook
 
 RPROMPT='%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}'
 PROMPT="%{$fg[white]%}┌[%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}]─[%{$fg[green]%}%d%{$reset_color%}]

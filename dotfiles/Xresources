@@ -8,6 +8,8 @@
 ! URxvt*scrollstyle: mode
 URxvt*scrollBar: false
 URxvt*loginShell: true
+URxvt.inputMethod: ibus
+URxvt.preeditType: OverTheSpot
 ! URxvt*scrollBar_right: boolean
 ! URxvt*scrollBar_floating: boolean
 ! URxvt*scrollBar_align: mode

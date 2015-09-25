@@ -1,0 +1,7 @@
+[user]
+	email = acmcarther@gmail.com
+	name = Alex McArther
+[alias]
+	co = checkout
+	st = status
+	ci = commit

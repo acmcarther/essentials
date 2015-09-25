@@ -12,6 +12,10 @@ xset r rate 300 30
 
 xbindkeys
 
+ibus-daemon -drx
+
+cupsd &
+
 #scripts/wp slideshow &
 #~/bar_start.sh &
 # TODO: start lighter here 
