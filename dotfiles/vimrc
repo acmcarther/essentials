@@ -33,6 +33,8 @@ Plugin 'slim-template/vim-slim'
 Plugin 'wting/rust.vim'
 Plugin 'lambdatoast/elm.vim'
 
+Plugin 'fatih/vim-go'
+
 Plugin 'myusuf3/numbers.vim'
 
 Plugin 'kikijump/tslime.vim'
@@ -42,6 +44,17 @@ Plugin 'bling/vim-airline'
 
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-rails'
+
+Plugin 'lervag/vimtex'
+
+Plugin 'derekwyatt/vim-scala'
+
+Plugin 'akhaku/vim-java-unused-imports'
+
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'gkz/vim-ls'
+Plugin 'digitaltoad/vim-pug'
 
 call vundle#end()
 filetype plugin indent on
@@ -71,12 +84,29 @@ autocmd BufNewFile,BufRead *.slim set filetype=slim
 " Fix rust
 autocmd FileType rust setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.rs set filetype=rust
+autocmd BufRead,BufNewFile *.rs.in set filetype=rust
+
+" Fix livescript
+autocmd FileType ls setlocal shiftwidth=2 tabstop=2
+autocmd BufRead,BufNewFile *.ls set filetype=ls
+
+" Fix pug/jade
+autocmd FileType pug setlocal shiftwidth=2 tabstop=2
+autocmd BufRead,BufNewFile *.jade set filetype=pug
+autocmd BufRead,BufNewFile *.pug set filetype=pug
+
+" Fix scala
+autocmd FileType scala setlocal shiftwidth=2 tabstop=2
+autocmd BufRead,BufNewFile *.scala set filetype=scala
 
 " Fix elm
 autocmd BufRead,BufNewFile *.elm set filetype=elm
 
 " Fix coffee
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+
+" Auto unused import highlight java
+autocmd BufWritePre *.java UnusedImports
 
 " Fix swap files
 set directory=$HOME/.vim/swapfiles//
@@ -182,7 +212,7 @@ if executable('ag')
   let g:grep_cmd_opts = '--line-numbers --noheading'
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -196,6 +226,13 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+set synmaxcol=256
+
+" Go stuff
+let g:go_fmt_autosave = 0
+autocmd FileType go setlocal expandtab shiftwidth=2 tabstop=2
+
+
 let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
 let g:rspec_runner = "os_x_iterm"
 
@@ -206,3 +243,10 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+
+" Racer bindings to rust source
+let s:rust_src_path=$HOME . '/rust/src'
+let g:ycm_rust_src_path=s:rust_src_path
+
+" YCM bindings to jump to definition
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
