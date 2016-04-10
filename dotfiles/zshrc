@@ -36,9 +36,8 @@ promptinit
 
 export EDITOR="vim"
 
-# Git town
-export PATH=/home/alex/repos/git-town/src/:$PATH
-export MANPATH=/home/alex/repos/git-town/man/:$MANPATH
+export PATH=~/essentials/bin:$PATH
+export MANPATH=~/essentials/man/:$MANPATH
 
 export PATH=/home/alex/.nvm/versions/node/v0.12.1/bin/:$PATH
 
@@ -46,14 +45,14 @@ export PATH=/home/alex/.nvm/versions/node/v0.12.1/bin/:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 
 # nvm
-source ~/.nvm/nvm.sh
-nvm use 0.12 1> /dev/null
+#source ~/.nvm/nvm.sh
+#nvm use 0.12 1> /dev/null
 
 source ~/.zsh_env
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
 
 # python
 export PYTHON=python2.7
@@ -94,7 +93,7 @@ export QT_IM_MODULE=xim
 
 autoload -Uz add-zsh-hook
 
-add-zsh-hook preexec npm_chpwd_hook
+#add-zsh-hook preexec npm_chpwd_hook
 
 RPROMPT='%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}'
 PROMPT="%{$fg[white]%}┌[%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}]─[%{$fg[green]%}%d%{$reset_color%}]

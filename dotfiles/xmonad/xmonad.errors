@@ -1,0 +1,26 @@
+
+xmonad.hs:133:28: Warning:
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+
+xmonad.hs:136:34: Warning:
+    In the use of ‘defaultPP’ (imported from XMonad.Hooks.DynamicLog):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad.Hooks.DynamicLog) instead."
+
+xmonad.hs:180:49: Warning:
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+
+xmonad.hs:205:63: Warning:
+    In the use of ‘defaultXPConfig’ (imported from XMonad.Prompt):
+    Deprecated: "Use def (from Data.Default, and re-exported from XMonad.Prompt) instead."
+
+xmonad.hs:242:62: Warning:
+    In the use of ‘defaultXPConfig’ (imported from XMonad.Prompt):
+    Deprecated: "Use def (from Data.Default, and re-exported from XMonad.Prompt) instead."
+
+xmonad.hs:243:59: Warning:
+    In the use of ‘defaultXPConfig’ (imported from XMonad.Prompt):
+    Deprecated: "Use def (from Data.Default, and re-exported from XMonad.Prompt) instead."

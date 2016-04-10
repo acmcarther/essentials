@@ -33,7 +33,10 @@ import Graphics.X11.ExtraTypes.XF86
       xF86XK_AudioPlay,
       xF86XK_AudioNext,
       xF86XK_AudioMute,
-      xF86XK_AudioLowerVolume )
+      xF86XK_AudioLowerVolume,
+      xF86XK_MonBrightnessUp,
+      xF86XK_MonBrightnessDown,
+      )
 import XMonad.Hooks.DynamicLog
     ( PP(ppCurrent, ppHidden, ppHiddenNoWindows, ppLayout, ppOrder,
          ppOutput, ppSep, ppTitle, ppUrgent, ppVisible, ppWsSep, ppExtras),
@@ -159,7 +162,8 @@ scratchpads = [ NS "htop" "urxvt -name htop -e htop" (resource =? "htop") defaul
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
 myXmonadBar :: String
-myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | lemonbar -f \"Ubuntu Mono:medium:pixelsize=15\" -f \"FontAwesome:medium:pixelsize=13\" -B \"black\" | bash"
+myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | lemonbar -f \"Ubuntu Mono:medium:pixelsize=25\" -f \"FontAwesome:medium:pixelsize=20\" -B \"black\" | bash"
+--myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | bar -B \"black\" | bash"
 
 restartXmonad = "killall lemonbar; cd ~/.xmonad; ghc -threaded xmonad.hs; mv xmonad xmonad-x86_64-linux; xmonad --restart;"
 
@@ -243,14 +247,17 @@ main = do
     ,((myModMask                , xK_F11   ), namedScratchpadAction scratchpads "ncmpcpp")
     ,((myModMask                , xK_F12   ), spawn "gsimplecal")
     ,((myModMask                , xK_Print ), spawn "scrot -s & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
-    ,((myModMask                , xK_space ), spawn "dmenu_run")
+    ,((myModMask                , xK_space ), spawn "dmenu_run -fn \"Ubuntu Mono:medium:pixelsize=25\"")
     ,((controlMask .|. altMask  , xK_t     ), spawn "urxvt")
     ,((myModMask                , xK_Return), currentWorkspace >>= getDir >>= spawnTerminalInDir)
     ,((0                        , xK_Print ), spawn "scrot & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
     ,((0                        , xF86XK_Sleep    ), spawn "pm-suspend")
-    --,((0                        , xF86XK_AudioMute), spawn "~/scripts/dvol2 -t")
-    --,((0                        , xF86XK_AudioLowerVolume), spawn "~/scripts/dvol2 -d 2 & mplayer /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga")
-    --,((0                        , xF86XK_AudioRaiseVolume ), spawn "~/scripts/dvol2 -i 2 & mplayer /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga")
+    ,((0                        , xF86XK_AudioMute), spawn "amixer -q set Master toggle")
+    -- WATCH OUT: These amixer values are gigantic because of my weird speaker setup
+    ,((0                        , xF86XK_AudioLowerVolume), spawn "amixer -q set Master 3200-")
+    ,((0                        , xF86XK_AudioRaiseVolume ), spawn "amixer -q set Master 3200+")
+    ,((0                        , xF86XK_MonBrightnessDown ), spawn "xbacklight -dec 10")
+    ,((0                        , xF86XK_MonBrightnessUp ), spawn "xbacklight -inc 10")
     ]
     `additionalMouseBindings`
     [((myModMask, 6), \_ -> moveTo Next NonEmptyWS)

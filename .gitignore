@@ -1,0 +1,3 @@
+configuration.nix
+dotfiles/irssi/config
+hardware-configuration.nix

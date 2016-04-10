@@ -49,7 +49,7 @@ memused() {
 }
 
 wifi() {
-  current_wifi=$(iwconfig wlp2s0 | awk -F "\"" '/wlp2s0/ { print $2 }')
+  current_wifi=$(nmcli -t --fields NAME con show --active)
   echo "%{F#FFB8D4DC}$wifi_icon $current_wifi%{F#FF6A9FB5} |"
 }
 

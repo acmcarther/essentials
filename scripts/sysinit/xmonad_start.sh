@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 echo $PATH 1>&2
 compton &
 

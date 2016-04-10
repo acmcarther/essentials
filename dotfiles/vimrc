@@ -37,10 +37,9 @@ Plugin 'fatih/vim-go'
 
 Plugin 'myusuf3/numbers.vim'
 
-Plugin 'kikijump/tslime.vim'
-
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-rails'
@@ -51,7 +50,7 @@ Plugin 'derekwyatt/vim-scala'
 
 Plugin 'akhaku/vim-java-unused-imports'
 
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'gkz/vim-ls'
 Plugin 'digitaltoad/vim-pug'
