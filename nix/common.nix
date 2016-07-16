@@ -14,19 +14,43 @@
     ];
   };
 
+  networking.firewall.allowedTCPPorts = [ 80 3000  8888 25980 4040 ];
+  networking.firewall.allowedUDPPorts = [ 80 3000  8888 25980 4040 ];
+
+  nixpkgs.config = {
+    # Nonfree packages (for nvidia drivers)
+    allowUnfree = true;
+
+    # Configure chromium for flash and pdf reading
+    chromium = {
+      enablePepperFlash = true;
+      enablePepperPdf = true;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
+    powertop # See power consumption
+    pinta      #simple paint program
+    gutenprint # printer
+    gutenprintBin # more printer
+    cups-bjnp
+    cups
+    google-chrome
+    deadbeef-with-plugins              # music player
+    pavucontrol
     arandr                             # GUI frontend for xrandr monitor configuration
     baobab                             # Disk usage analyser
     bc                                 # Basic calculator
-    byzanz                             # Screen recording software
+    byzanz
     chromium                           # Browser
-    ffmpeg                             # Video recording/converting/streaming
+    ffmpeg-full                             # Video recording/converting/streaming
     gtk                                # To get GTK+'s themes
     glxinfo                            # GFX Debug
     gnome.gnome_icon_theme             # icons for thunar
     hicolor_icon_theme                 # Default theme for thunar
     htop                               # System monitor
     irssi                              # Irc client
+    live555                            # RTSP libs for
     mplayer                            # Video player
     nix-repl                           # Repl for nix package manager
     pcmanfm                            # Lightweight file browser
@@ -34,12 +58,14 @@
     pulseaudioFull                     # Audio
     rxvt_unicode-with-plugins          # Terminal emulator
     scrot                              # Screenshot capturing
+    skype
     sshfsFuse                          # FS over SSH
     taskwarrior                        # Task management TODO: Remove if not used
     tmux                               # Console multiplexer
     transmission                       # Bittorrent Client
     tree                               # File tree
     unzip                              # .zip file util
+    vlc
     wget
     xclip                              # Clipboard command line util
     xdotool                            # Diagnostic for Mouse & KB
@@ -62,17 +88,6 @@
 
   # Use network manager for networking (in lieu of wpa_supplicant)
   networking.networkmanager.enable = true;
-
-  nixpkgs.config = {
-    # Nonfree packages (for nvidia drivers)
-    allowUnfree = true;
-
-    # Configure chromium for flash and pdf reading
-    chromium = {
-      enablePepperFlash = true;
-      enablePepperPdf = true;
-    };
-  };
 
   programs.zsh.enable = true;
 
@@ -110,6 +125,14 @@
       # Configure for sudo, network, gfx, and docker
       extraGroups = ["wheel" "networkmanager" "video" "docker"];
       uid = 1000;
+      shell = "/run/current-system/sw/bin/zsh";
+    };
+
+    extraUsers.guest = {
+      isNormalUser = true;
+      home = "/home/guest";
+
+      uid = 1001;
       shell = "/run/current-system/sw/bin/zsh";
     };
   };

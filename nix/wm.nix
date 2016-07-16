@@ -24,8 +24,8 @@
     font-awesome-ttf = pkgs.font-awesome-ttf.overrideDerivation (attrs: {
       name = "font-awesome-4.5.0";
       src = pkgs.fetchurl {
-        url = "http://fortawesome.github.io/Font-Awesome/assets/font-awesome-4.5.0.zip";
-        sha256 = "12m1rkpgq51gqyid0a1v1av3pcyc61asfy6bbbki1gkym2advfbf";
+        url = "https://github.com/FortAwesome/Font-Awesome/archive/v4.5.0.zip";
+        sha256 = "04jp213iwpc8bfn0vgkf36pwafwcgx65gvam7wfd36522l19ldy6";
       };
     });
   };
@@ -42,6 +42,7 @@
       exportConfiguration = false;
       enable = true;
       layout = "us";
+      xkbOptions = "caps:escape";
 
       # Setup daemons for composting and wallpaper
       displayManager = {

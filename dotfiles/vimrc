@@ -3,63 +3,64 @@ filetype on
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'                " Plugin Manager
 
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tmhedberg/matchit'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'kien/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'blarghmatey/split-expander'
-Plugin 'sjl/vitality.vim'
+"" Larger Plugins
+Plugin 'dkprice/vim-easygrep'             " Grep integration for vim
+Plugin 'junegunn/fzf'                     " Fzf for fuzzy search
+Plugin 'junegunn/fzf.vim'                 " Fzf for fuzzy search
+Plugin 'rking/ag.vim'                     " Silver searcher file finder
+Plugin 'scrooloose/nerdtree'              " File tree
+Plugin 'scrooloose/syntastic'             " Syntax checker for many languages
+Plugin 'tpope/vim-fugitive'               " Git version control wrapper
+Plugin 'tpope/vim-surround'               " Quote+Paren manipulation
+Plugin 'vim-airline/vim-airline'          " Bottom statusbar for vim
+
+"" Small Plugins
+Plugin 'altercation/vim-colors-solarized' " Solarized color scheme for vim
+Plugin 'christoomey/vim-tmux-navigator'   " Integrate tmux and vim split movement
+Plugin 'easymotion/vim-easymotion'        " Better movements without guessing
+Plugin 'kana/vim-textobj-user'            " Defining custom text objects
+Plugin 'myusuf3/numbers.vim'              " Intelligent toggle between relative and absolute line numbering
+Plugin 'sjl/vitality.vim'                 " Compatability fixes for focus in tmux
+Plugin 'tmhedberg/matchit'                " % matching for words and regex
+Plugin 'tomtom/tlib_vim'                  " Util functions for other plugins
+Plugin 'vim-scripts/tComment'             " Utilities for commenting/uncommenting lines and blocks
+
+"" Tiny Plugins
+Plugin 'airblade/vim-gitgutter'           " Shows git diff (+/-/~) in sidebar
+Plugin 'blarghmatey/split-expander'       " Quick commands for temporarily resizing splits
+Plugin 'takac/vim-hardtime'               " Timeouts for vim movement keys (hard mode)
+Plugin 'tpope/vim-endwise'                " Insert end after blocks in ruby
+Plugin 'tpope/vim-sensible'               " Basic sensible default settings
+Plugin 'vim-airline/vim-airline-themes'   " Basic airline themes
+
+"" Language Support
+Plugin 'derekwyatt/vim-scala'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'fatih/vim-go'
+Plugin 'gkz/vim-ls'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'lambdatoast/elm.vim'
+Plugin 'lervag/vimtex'
+Plugin 'slim-template/vim-slim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-bundler'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-endwise'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'vim-scripts/tComment'
-Plugin 'tomtom/tlib_vim'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-haml'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'dkprice/vim-easygrep'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'takac/vim-hardtime'
-Plugin 'slim-template/vim-slim'
-Plugin 'wting/rust.vim'
-Plugin 'lambdatoast/elm.vim'
-
-Plugin 'fatih/vim-go'
-
-Plugin 'myusuf3/numbers.vim'
-
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-rails'
-
-Plugin 'lervag/vimtex'
-
-Plugin 'derekwyatt/vim-scala'
-
-Plugin 'akhaku/vim-java-unused-imports'
-
-"Plugin 'Valloric/YouCompleteMe'
-
-Plugin 'gkz/vim-ls'
-Plugin 'digitaltoad/vim-pug'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'wting/rust.vim'
 
 call vundle#end()
 filetype plugin indent on
 
 syntax enable
+
 set list listchars=tab:»·,trail:·
+
+" ---------------------------------------------------------
+" Color Theme
+" ---------------------------------------------------------
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_degrade=0
@@ -67,48 +68,37 @@ let g:solarized_visibility="normal"
 set background=dark
 colorscheme solarized
 
-set laststatus=2
-let g:airline#extensions#tabline#enabled=1
-
-"set directory=$HOME/.vim/swapfiles//
-
+" ---------------------------------------------------------
+" Syntastic
+" ---------------------------------------------------------
 let g:syntastic_ruby_checkers  = ['mri']
 let g:syntastic_enable_highlighting=0
 
-
-" Maybe fix slim
+" ---------------------------------------------------------
+" Language Support
+" ---------------------------------------------------------
 autocmd FileType slim setlocal foldmethod=indent
 autocmd BufNewFile,BufRead *.slim set filetype=slim
-
-" Fix rust
 autocmd FileType rust setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.rs set filetype=rust
 autocmd BufRead,BufNewFile *.rs.in set filetype=rust
-
-" Fix livescript
 autocmd FileType ls setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.ls set filetype=ls
-
-" Fix pug/jade
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.jade set filetype=pug
 autocmd BufRead,BufNewFile *.pug set filetype=pug
-
-" Fix scala
 autocmd FileType scala setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.scala set filetype=scala
-
-" Fix elm
 autocmd BufRead,BufNewFile *.elm set filetype=elm
-
-" Fix coffee
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+let g:go_fmt_autosave = 0
+let s:rust_src_path=$HOME . '/rust/src'
+let g:ycm_rust_src_path=s:rust_src_path
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
-" Auto unused import highlight java
-autocmd BufWritePre *.java UnusedImports
-
-" Fix swap files
-set directory=$HOME/.vim/swapfiles//
+" ---------------------------------------------------------
+" Navigation
+" ---------------------------------------------------------
 
 " Easier split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -122,10 +112,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Remap colon to semicolon
-nnoremap ; :
-
-" Split below and right
+" ---------------------------------------------------------
+" Basic Editor Behavior
+" ---------------------------------------------------------
 set splitbelow
 set splitright
 
@@ -150,102 +139,107 @@ set nobackup
 set ruler
 set showcmd
 
-" Search
-set incsearch
-set hlsearch
 set autowrite
-
-" Highlight characters over 80 col
-highlight LineTooLong ctermbg=darkgray ctermfg=black
-call matchadd('LineTooLong', '\%81v', 100)
-                                                                                                                                                                 "
-" Leader
-let mapleader = " "
-" Toggle nerdtree with F10
-map <F10> :NERDTreeToggle<CR>
-
-" Current file in nerdtree
-map <F9> :NERDTreeFind<CR>
-
-" Reduce timeout after <ESC> is recvd. This is only a good idea on fast links.
-set ttimeout
-set ttimeoutlen=20
-set notimeout
-
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
-map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
-map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
-map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
-
-" highlight vertical column of cursor
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline
-set cursorline
-
-"key to insert mode with paste using F2 key
-map <F2> :set paste<CR>i
-" Leave paste mode on exit
-au InsertLeave * set nopaste
-
-" Command aliases
-cabbrev tp tabprev
-cabbrev tn tabnext
-cabbrev tf tabfirst
-cabbrev tl tablast
-
-" Fuzzy finder: ignore stuff that can't be opened, and generated files
-let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
-
-" Cursor highlight
-hi CursorLineNr guifg=#050505  
-
-" Airline
-let g:airline_theme='solarized'
-set t_Co=256
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup
-  let g:grep_cmd_opts = '--line-numbers --noheading'
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-" bind K to search word under cursor
-nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" Limit syntax highlighting (esp for single line JS)
 set synmaxcol=256
 
-" Go stuff
-let g:go_fmt_autosave = 0
-autocmd FileType go setlocal expandtab shiftwidth=2 tabstop=2
+" Reduce timeout after <ESC> is recvd. This is only a good idea on fast links.
+set ttimeout
+set ttimeoutlen=20
+set notimeout
 
+" 256 colors support
+set t_Co=256
 
-let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
-let g:rspec_runner = "os_x_iterm"
+set noswapfile
+set nobackup
+set nowritebackup
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" ---------------------------------------------------------
+" Hard mode
+" ---------------------------------------------------------
+"let g:hardtime_default_on = 1
 
-" RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+" ---------------------------------------------------------
+" Line Length
+" ---------------------------------------------------------
+highlight LineTooLong ctermbg=darkgray ctermfg=black
+call matchadd('LineTooLong', '\%81v', 100)
 
-" Racer bindings to rust source
-let s:rust_src_path=$HOME . '/rust/src'
-let g:ycm_rust_src_path=s:rust_src_path
+" ---------------------------------------------------------
+" Leader
+" ---------------------------------------------------------
+let mapleader = " "
 
-" YCM bindings to jump to definition
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
+" ---------------------------------------------------------
+" File Tree
+" ---------------------------------------------------------
+map <F10> :NERDTreeToggle<CR>
+map <F9> :NERDTreeFind<CR>
+
+" ---------------------------------------------------------
+" Local Editing
+" ---------------------------------------------------------
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
+
+" ---------------------------------------------------------
+" Tab behavior
+" ---------------------------------------------------------
+cabbrev tp tabprev
+cabbrev tn tabnext
+cabbrev tf tabfirst
+cabbrev tl tablast
+
+" ---------------------------------------------------------
+" Cursor
+" ---------------------------------------------------------
+
+" highlight vertical column of cursor
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline
+set cursorline
+
+" Cursor highlight
+hi CursorLineNr guifg=#050505
+
+" ---------------------------------------------------------
+" Status Bar
+" ---------------------------------------------------------
+set laststatus=2
+let g:airline#extensions#tabline#enabled=1
+let g:airline_theme='solarized'
+
+" ---------------------------------------------------------
+" File Search
+" ---------------------------------------------------------
+nnoremap <C-p> :Files!<CR>
+" Fuzzy finder: ignore stuff that can't be opened, and generated files
+let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
+
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup
+  let g:grep_cmd_opts = '--line-numbers --noheading'
+
+endif
+
+" ---------------------------------------------------------
+" Text Search
+" ---------------------------------------------------------
+
+" bind K to search word under cursor
+nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Search
+set incsearch
+set hlsearch
