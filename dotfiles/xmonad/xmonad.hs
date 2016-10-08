@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveDataTypeable, NoMonomorphismRestriction, MultiParamTypeClasses, ImplicitParams #-}
+{-# LANGUAGE TypeSynonymInstances, DeriveDataTypeable, NoMonomorphismRestriction, MultiParamTypeClasses, ImplicitParams #-}
 import XMonad
 import XMonad.Layout.Fullscreen ( fullscreenEventHook )
 import XMonad.Layout.NoBorders ( smartBorders )
@@ -162,7 +162,7 @@ scratchpads = [ NS "htop" "urxvt -name htop -e htop" (resource =? "htop") defaul
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
 myXmonadBar :: String
-myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | lemonbar -f \"Ubuntu Mono:medium:pixelsize=20\" -f \"FontAwesome:medium:pixelsize=15\" -B \"black\" | bash"
+myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | lemonbar -f \"Ubuntu Mono:medium:pixelsize=20\" -f \"FontAwesome:medium:pixelsize=15\" -B \"#000000\" | bash"
 --myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | bar -B \"black\" | bash"
 
 restartXmonad = "killall lemonbar; cd ~/.xmonad; ghc -threaded xmonad.hs; mv xmonad xmonad-x86_64-linux; xmonad --restart;"
