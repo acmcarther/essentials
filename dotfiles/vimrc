@@ -49,7 +49,7 @@ Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'wting/rust.vim'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -93,6 +93,7 @@ autocmd BufRead,BufNewFile *.elm set filetype=elm
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 let g:go_fmt_autosave = 0
 let s:rust_src_path=$HOME . '/rust/src'
+let g:rustfmt_autosave = 1
 let g:ycm_rust_src_path=s:rust_src_path
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 

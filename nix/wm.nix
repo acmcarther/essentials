@@ -14,6 +14,8 @@
     feh                                # Wallpaper manager
     python27Packages.udiskie
     unclutter                          # Mouse hider
+    haskellPackages.xmonad
+    haskellPackages.xmonad-contrib
     xlaunch                            # Manual starting of X
     xlibs.xmodmap                      # Keyboard reconfiguration
     xmonad-with-packages               # Tiling window manager
@@ -59,12 +61,21 @@
       desktopManager = {
         xterm.enable = false;
         xfce.enable = false;
+        default = "none";
       };
 
       # Enable xmonad
       windowManager = {
         xmonad.enable = true;
         xmonad.enableContribAndExtras = true;
+        xmonad.extraPackages = haskellPackages: with haskellPackages; [
+          xmonad-contrib
+          xmonad-extras
+          regex-posix
+          taffybar
+          turtle
+          #xmonad-screenshot
+        ];
         default = "xmonad";
       };
     };

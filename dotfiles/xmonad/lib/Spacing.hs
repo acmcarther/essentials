@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveDataTypeable, NoMonomorphismRestriction, MultiParamTypeClasses, ImplicitParams #-}
+{-# LANGUAGE FlexibleInstances, DeriveDataTypeable, NoMonomorphismRestriction, MultiParamTypeClasses, ImplicitParams #-}
 -------------------------------------------------------------------------------
 -- | Allows dynamic modification of window spacing
 -- ----------------------------------------------------------------------------
