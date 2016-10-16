@@ -41,6 +41,7 @@ servers = (
     ssl_verify = "no";
     password = "itjustworks";
     autoconnect = "yes";
+    password = "itjustworks";
   }
 );
 
@@ -382,6 +383,24 @@ statusbar = {
   };
 };
 settings = {
-  core = { real_name = "Unknown"; user_name = "alex"; nick = "alex"; };
+  core = { 
+    real_name = "Unknown";
+    user_name = "alex";
+    nick = "acmcarther";
+  };
   "fe-text" = { actlist_sort = "refnum"; };
 };
+ignores = (
+  { level = "JOINS PARTS QUITS MODES"; channels = ( "#rust" ); },
+  { 
+    level = "JOINS PARTS QUITS MODES";
+    channels = ( "#rust-gamedev" );
+  },
+  {
+    level = "JOINS PARTS QUITS MODES";
+    channels = ( "#rust-beginners" );
+  },
+  { mask = "rust"; level = "JOINS PARTS QUITS MODES"; },
+  { mask = "rust-gamedev"; level = "JOINS PARTS QUITS MODES"; },
+  { mask = "rust-beginners"; level = "JOINS PARTS QUITS MODES"; }
+);

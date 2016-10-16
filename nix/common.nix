@@ -29,32 +29,34 @@
   };
 
   environment.systemPackages = with pkgs; [
-    powertop # See power consumption
-    pinta      #simple paint program
-    gutenprint # printer
-    gutenprintBin # more printer
-    cups-bjnp
-    cups
-    google-chrome
-    deadbeef-with-plugins              # music player
-    pavucontrol
+    firefox
     arandr                             # GUI frontend for xrandr monitor configuration
     baobab                             # Disk usage analyser
     bc                                 # Basic calculator
-    byzanz
+    byzanz                             # Screen recording software
     chromium                           # Browser
+    cups
+    cups-bjnp
+    deadbeef-with-plugins              # music player
+    ffmpeg                             # Video recording/converting/streaming
     ffmpeg-full                             # Video recording/converting/streaming
-    gtk                                # To get GTK+'s themes
     glxinfo                            # GFX Debug
     gnome.gnome_icon_theme             # icons for thunar
+    google-chrome
+    gtk                                # To get GTK+'s themes
+    gutenprint # printer
+    gutenprintBin # more printer
     hicolor_icon_theme                 # Default theme for thunar
     htop                               # System monitor
     irssi                              # Irc client
     live555                            # RTSP libs for
     mplayer                            # Video player
     nix-repl                           # Repl for nix package manager
+    pavucontrol
     pcmanfm                            # Lightweight file browser
     physlock                           # Screen locker
+    pinta      #simple paint program
+    powertop # See power consumption
     pulseaudioFull                     # Audio
     rxvt_unicode-with-plugins          # Terminal emulator
     scrot                              # Screenshot capturing
@@ -118,12 +120,14 @@
   users = {
     defaultUserShell = "/run/current-system/sw/bin/zsh";
 
+    extraGroups.ssl-cert.gid = 1040;
+    extraGroups.essentials.gid = 1050;
     extraUsers.alex = {
       isNormalUser = true;
       home = "/home/alex";
 
       # Configure for sudo, network, gfx, and docker
-      extraGroups = ["wheel" "networkmanager" "video" "docker"];
+      extraGroups = ["wheel" "networkmanager" "video" "docker" "ssl-cert" "essentials"];
       uid = 1000;
       shell = "/run/current-system/sw/bin/zsh";
     };

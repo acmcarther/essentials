@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     playonlinux                        # Wine DirectX/Syscall
     steam                              # Games
+    teamspeak_client                   # Team voice chat
   ];
 
   # Enable direct rendering for 32 bit applications

@@ -71,11 +71,14 @@
       python27                           # Python programming language
       python27Packages.pip               # Python package manager
       python27Packages.virtualenv
+      python2nix
+      python35                           # Python programming language
+      python35Packages.pip               # Python package manager
+      python35Packages.virtualenv
       ruby                               # Ruby programming language
       rubygems                           # Ad hoc Ruby package manager
       rustNightlyWithi686
       silver-searcher                    # Code searching tool
-      sqlite                             # sqlite database
       sqlite                             # sqlite database
       vimPlugins.YouCompleteMe
       vim_configurable                   # Text editor
