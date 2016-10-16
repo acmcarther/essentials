@@ -12,6 +12,6 @@
       /home/alex/essentials/nix/development.nix
       /home/alex/essentials/nix/games.nix
       /home/alex/essentials/nix/wm.nix
-      /home/alex/essentials/nix/workstation.nix
+      /home/alex/essentials/nix/laptop.nix
     ];
 }

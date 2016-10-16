@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   nixpkgs.config.packageOverrides = pkgs: rec {
     rustGetter = pkgs.fetchFromGitHub {
       owner = "Ericson2314";
@@ -52,32 +51,35 @@
     };
 
     systemPackages = with pkgs; [
+      #capnproto
       awscli                             # AWS command line interface
-      bundler
+      bazel
       bundix                             # Structured Ruby package manager
+      cargoNightly
+      cmake
+      elixir
+      fzf
       git                                # Git source control
       go
-      fzf
       godep
-      openjdk8
       imagemagick                        # Image manip library
       ngrok
-      bazel
-      protobuf
       nix-repl                           # Repl for nix package manager
       nodejs-5_x                         # Node.js event driven JS framework
+      openjdk8
+      protobuf
       python27                           # Python programming language
-      rustNightlyWithi686
-      cargoNightly
       python27Packages.pip               # Python package manager
       python27Packages.virtualenv
-      elixir
       ruby                               # Ruby programming language
+      rubygems                           # Ad hoc Ruby package manager
+      rustNightlyWithi686
       silver-searcher                    # Code searching tool
       sqlite                             # sqlite database
-      which                              # Dependency for fzf.vim
+      sqlite                             # sqlite database
       vimPlugins.YouCompleteMe
       vim_configurable                   # Text editor
+      which                              # Dependency for fzf.vim
     ];
   };
 

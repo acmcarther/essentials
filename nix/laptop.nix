@@ -7,7 +7,7 @@
   ];
 
   # Enable bumblebee gpu management
-  hardware.bumblebee.enable = true;
+  hardware.bumblebee.enable = false;
 
   networking = {
     hostName = "bbq"; # Define your hostname.

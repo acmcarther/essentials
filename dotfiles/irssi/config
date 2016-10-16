@@ -39,6 +39,7 @@ servers = (
     port = "6697";
     use_ssl = "yes";
     ssl_verify = "no";
+    password = "itjustworks";
     autoconnect = "yes";
   }
 );

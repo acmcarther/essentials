@@ -50,6 +50,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'rust-lang/rust.vim'
+Plugin 'cstrahan/vim-capnp'
 
 call vundle#end()
 filetype plugin indent on
@@ -91,6 +92,8 @@ autocmd FileType scala setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.scala set filetype=scala
 autocmd BufRead,BufNewFile *.elm set filetype=elm
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+autocmd BufNewFile,BufRead *.capnp set filetype=capnp
+
 let g:go_fmt_autosave = 0
 let s:rust_src_path=$HOME . '/rust/src'
 let g:rustfmt_autosave = 1
