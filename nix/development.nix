@@ -76,7 +76,6 @@
       python35Packages.pip               # Python package manager
       python35Packages.virtualenv
       ruby                               # Ruby programming language
-      rubygems                           # Ad hoc Ruby package manager
       rustNightlyWithi686
       silver-searcher                    # Code searching tool
       sqlite                             # sqlite database
