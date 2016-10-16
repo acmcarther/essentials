@@ -37,9 +37,14 @@ URxvt.preeditType: OverTheSpot
 ! URxvt*pointerBlank:                   boolean
 !URxvt*background:                      rgba:1000/2a00/3b00/ffff
 
+! Solarized dark
 URxvt*background:  #0A1924  
-!URxvt*background:  #000000  
 URxvt*foreground: #DEDEDE  
+!URxvt*background:  #000000  
+
+! Solarized light
+!URxvt*background:  #fdf6e3
+!URxvt*foreground: #657b83
 
 URxvt*colorUL: #86a2b0  
 

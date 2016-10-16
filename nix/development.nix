@@ -44,7 +44,6 @@
       date = rustDate;
       hash = "140vdax2yfs66wada54svgrghfb41igvd7pkx3cqpl1wvrmf2gs6";
     };
-
   };
 
   environment = {
@@ -60,8 +59,11 @@
       go
       fzf
       godep
+      openjdk8
       imagemagick                        # Image manip library
       ngrok
+      bazel
+      protobuf
       nix-repl                           # Repl for nix package manager
       nodejs-5_x                         # Node.js event driven JS framework
       python27                           # Python programming language
