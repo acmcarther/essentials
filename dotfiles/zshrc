@@ -94,13 +94,23 @@ export prenpmpath=$PATH
 export GTK_IM_MODULE=xim
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=xim
+export PATH=$PATH:/home/alex/packages/emsdk/emsdk_portable:/home/alex/packages/emsdk/emsdk_portable/clang/fastcomp/build_incoming_64/bin:/home/alex/packages/emsdk/emsdk_portable/node/4.1.1_64bit/bin:/home/alex/packages/emsdk/emsdk_portable/emscripten/incoming
 
 autoload -Uz add-zsh-hook
 
 #add-zsh-hook preexec npm_chpwd_hook
 
+NIX_SNIPPET='─[%{$fg[red]%}NixSh%{$reset_color%}]'
+if [ -z "${IS_NIX_SHELL+x}" ]; then
+  NIX_SNIPPET=""
+fi
+
+USER_SNIPPET='%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}'
+PATH_SNIPPET='%{$fg[green]%}%d%{$reset_color%}'
+
 RPROMPT='%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}'
-PROMPT="%{$fg[white]%}┌[%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}]─[%{$fg[green]%}%d%{$reset_color%}]
+
+PROMPT="%{$fg[white]%}┌[$USER_SNIPPET]$NIX_SNIPPET─[$PATH_SNIPPET]
 └─╼ "
 
 # Key bindings
@@ -170,3 +180,6 @@ zle     -N   fzf-history-widget
 bindkey '^R' fzf-history-widget
 
 fi
+
+# Default nix shell to open zsh instead of bash
+alias nix-shell="nix-shell --command $SHELL"

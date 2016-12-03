@@ -1,47 +1,32 @@
 { config, pkgs, ... }:
 
-{
+let rustNightlyNixRepo = pkgs.fetchFromGitHub {
+     owner = "solson";
+     repo = "rust-nightly-nix";
+     rev = "9e09d579431940367c1f6de9463944eef66de1d4";
+     sha256 = "03zkjnzd13142yla52aqmgbbnmws7q8kn1l5nqaly22j31f125xy";
+  };
+  rustPackages = pkgs.callPackage rustNightlyNixRepo { };
+in {
   nixpkgs.config.packageOverrides = pkgs: rec {
-    rustGetter = pkgs.fetchFromGitHub {
-      owner = "Ericson2314";
-      repo = "nixos-configuration";
-      rev = "ca75f2a08643faf913ab667199ef1b3fe5615618";
-      sha256 = "131hp2zp1i740zqrbgpa57zjczs5clj3q2dmylbnr9cgsqbcyznp";
-    };
-
-    funs = pkgs.callPackage "${rustGetter}/user/.nixpkgs/rust-nightly.nix" { };
-
-    rustDate = "2016-10-03";
-    rustStdDate = "2016-10-03";
-
-    rustcNightly = funs.rustc {
-      date = rustDate;
-      hash = "13hvrk03ndhx8jrsfvawrakfchv10y3kxxga0fdq3ssh8sv2ph0v";
-    };
-
-    rustStd = funs.rust-std {
-      date = rustDate;
-      hash = "1ms4q9qx7gfbah211sswl66yqi1khcq9h5zxl20hkkj6jzzvfy2i";
-    };
-
-    rustNightlyWithi686 = funs.rustcWithSysroots {
-      rustc = rustcNightly;
+    cargoLatest = rustPackages.cargo { date = "2016-10-28"; };
+    rustcLatest = rustPackages.rustcWithSysroots {
+      rustc = rustPackages.rustc {
+        date = "2016-10-28";
+      };
       sysroots = [
-        (funs.rust-std {
-          hash = "178p0lzqscykxrf35jnb5kvxlb6xscsby901n4abz55mapkqlkky";
-          date = rustStdDate;
+        (rustPackages.rust-std {
+          date = "2016-10-28";
         })
-        (funs.rust-std {
-          hash = "1ms4q9qx7gfbah211sswl66yqi1khcq9h5zxl20hkkj6jzzvfy2i";
-          date = rustStdDate;
-          system = "i686-linux";
+        (rustPackages.rust-std {
+          date = "2016-10-28";
+          system = "asmjs-unknown-emscripten";
+        })
+        (rustPackages.rust-std {
+          date = "2016-10-28";
+          system = "wasm32-unknown-emscripten";
         })
       ];
-    };
-
-    cargoNightly = funs.cargo {
-      date = rustDate;
-      hash = "140vdax2yfs66wada54svgrghfb41igvd7pkx3cqpl1wvrmf2gs6";
     };
   };
 
@@ -52,11 +37,14 @@
 
     systemPackages = with pkgs; [
       #capnproto
+      cargoLatest
       awscli                             # AWS command line interface
       bazel
+      gcc
+      bind                               # Provides `dig` dns lookup util
       bundix                             # Structured Ruby package manager
-      cargoNightly
       cmake
+      gnumake
       elixir
       fzf
       git                                # Git source control
@@ -76,7 +64,7 @@
       python35Packages.pip               # Python package manager
       python35Packages.virtualenv
       ruby                               # Ruby programming language
-      rustNightlyWithi686
+      rustcLatest
       silver-searcher                    # Code searching tool
       sqlite                             # sqlite database
       vimPlugins.YouCompleteMe
@@ -86,18 +74,44 @@
   };
 
   services = {
-    # Enable postgres
+    # Postgres SQL database
     postgresql = {
       enable = false;
       package = pkgs.postgresql94;
       authentication = "local all all ident";
     };
 
-    # Enable Mongo
+    # Mongodb NoSQL db
     mongodb.enable = false;
 
-    # Enable Redis
-    redis.enable = false;
+    # Redis KV store
+    redis.enable = true;
+
+    # Consul service registry
+    consul = {
+      enable = true;
+      extraConfig = {
+        server = true;
+        bootstrap = true;
+        services = [{
+          name = "redis";
+          port = 6379;
+          address = "127.0.0.1";
+          checks = [{
+            name = "active";
+            script = "/var/run/current-system/sw/bin/systemctl is-active redis";
+            interval = "30s";
+          }];
+        }];
+      };
+    };
+
+    dnsmasq = {
+      enable = true;
+      extraConfig = ''
+        server=/consul/127.0.0.1#8600
+      '';
+    };
   };
 
   # Enable docker contaner svc

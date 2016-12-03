@@ -13,10 +13,35 @@
     hostId = "87813f15";
   };
 
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    elasticsearch2 = pkgs.elasticsearch2.overrideDerivation( oldAttrs: {
+      src = pkgs.fetchurl {
+        url = "https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.0/elasticsearch-2.4.0.tar.gz";
+        sha256 = "1jglmj1dnh1n2niyds6iyrpf6x6ppqgkivzy6qabkjvvmr013q1s";
+      };
+    });
+  };
+
   services.openssh = {
     enable = true;
     ports = [ 25980 ];
     passwordAuthentication = true;
+  };
+
+  services.kibana.enable = true;
+
+  services.elasticsearch.enable = true;
+
+  services.logstash = {
+    enable = true;
+    enableWeb = true;
+    port = "9292";
+    inputConfig = ''
+    '';
+    outputConfig = ''
+      elasticsearch { hosts => ["localhost:9200"] }
+    '';
+
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];

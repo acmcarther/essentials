@@ -1,5 +1,7 @@
 configuration.nix
 dotfiles/irssi/config
 hardware-configuration.nix
+dotfiles/xmonad/xmonad.errors
+dotfiles/xmonad/xmonad-x86_64-linux
 */**/*.hi
 */**/*.o

@@ -188,7 +188,7 @@ main = do
     , manageHook         = newManageHook
     , handleEventHook    = fullscreenEventHook <+> docksEventHook
     , startupHook        = setWMName "LG3D"
-    , logHook            = myLogHook bar  >> fadeInactiveLogHook 0.9
+    , logHook            = myLogHook bar  >> fadeInactiveLogHook 0.95
     }
 --------------------------------------------------------------------------------------------------------------------
 -- Keyboard options
