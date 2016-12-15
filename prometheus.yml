@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s
+
+  external_labels:
+    monitor: 'codelab-monitor'
+
+scrape_configs:
+  - job_name: 'prometheus'
+
+    scrape_interval: 5s
+
+    metrics_path: '/metrics'
+
+    static_configs:
+      - targets: ['localhost:9090']
+
+scrape_configs:
+  - job_name: 'server'
+
+    scrape_interval: 15s
+
+    metrics_path: '/metrics'
+
+    static_configs:
+      - targets: ['localhost:9100']

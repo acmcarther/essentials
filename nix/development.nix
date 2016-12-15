@@ -9,6 +9,12 @@ let rustNightlyNixRepo = pkgs.fetchFromGitHub {
   rustPackages = pkgs.callPackage rustNightlyNixRepo { };
 in {
   nixpkgs.config.packageOverrides = pkgs: rec {
+    gdb = pkgs.gdb.overrideDerivation(oldAttrs:{
+      src = pkgs.fetchurl {
+        url = "mirror://gnu/gdb/gdb-7.12.tar.xz";
+        sha256 = "152g2qa8337cxif3lkvabjcxfd9jphfb2mza8f1p2c4bjk2z6kw3";
+      };
+    });
     cargoLatest = rustPackages.cargo { date = "2016-10-28"; };
     rustcLatest = rustPackages.rustcWithSysroots {
       rustc = rustPackages.rustc {
@@ -49,6 +55,8 @@ in {
       fzf
       git                                # Git source control
       go
+      gdb
+      rr
       godep
       imagemagick                        # Image manip library
       ngrok
@@ -74,6 +82,8 @@ in {
   };
 
   services = {
+    # Enable Mongo
+    mongodb.enable = false;
     # Postgres SQL database
     postgresql = {
       enable = false;

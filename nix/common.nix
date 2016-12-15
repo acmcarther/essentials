@@ -29,6 +29,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    file
     firefox
     arandr                             # GUI frontend for xrandr monitor configuration
     baobab                             # Disk usage analyser
