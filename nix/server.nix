@@ -341,7 +341,7 @@
         # put your packages here:
         pkgs.gzip pkgs.bash pkgs.wget pkgs.unzip pkgs.glibc pkgs.cmake pkgs.clang
         # ...
-        pkgs.gcc49 pkgs.bash pkgs.rustNightlyWithi686 pkgs.cargoNightly
+        pkgs.gcc49 pkgs.bash pkgs.rustcLatest pkgs.cargoLatest
       ];
     };
     in [ env ];

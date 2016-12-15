@@ -86,8 +86,6 @@ in {
   };
 
   services = {
-    # Enable Mongo
-    mongodb.enable = false;
     # Postgres SQL database
     postgresql = {
       enable = false;
