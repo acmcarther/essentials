@@ -7,6 +7,10 @@ let rustNightlyNixRepo = pkgs.fetchFromGitHub {
      sha256 = "03zkjnzd13142yla52aqmgbbnmws7q8kn1l5nqaly22j31f125xy";
   };
   rustPackages = pkgs.callPackage rustNightlyNixRepo { };
+  bazel-custom = import ./custom-nix-pkgs/bazel/default.nix {
+    inherit (pkgs) stdenv fetchFromGitHub buildFHSUserEnv writeScript jdk zip unzip;
+    inherit (pkgs) which makeWrapper binutils fetchurl;
+  };
 in {
   nixpkgs.config.packageOverrides = pkgs: rec {
     gdb = pkgs.gdb.overrideDerivation(oldAttrs:{
@@ -45,7 +49,7 @@ in {
       #capnproto
       cargoLatest
       awscli                             # AWS command line interface
-      bazel
+      bazel-custom
       gcc
       bind                               # Provides `dig` dns lookup util
       bundix                             # Structured Ruby package manager
