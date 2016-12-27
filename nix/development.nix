@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let rustNightlyNixRepo = pkgs.fetchFromGitHub {
      owner = "solson";
@@ -65,7 +65,7 @@ in {
       imagemagick                        # Image manip library
       ngrok
       nix-repl                           # Repl for nix package manager
-      nodejs-5_x                         # Node.js event driven JS framework
+      nodejs                             # Node.js event driven JS framework
       openjdk8
       protobuf
       python27                           # Python programming language
@@ -85,6 +85,19 @@ in {
     ];
   };
 
+  # Override consul start routine to use dev mode
+  # TODO(acmcarther): Push this upstream
+  systemd.services.consul =
+    let
+      cfg = config.services.consul;
+      configFiles = [ "/etc/consul.json" "/etc/consul-addrs.json" ]
+        ++ cfg.extraConfigFiles;
+      updatedStart = "@${cfg.package.bin}/bin/consul consul agent -dev -config-dir /etc/consul.d"
+        + lib.concatMapStrings(n: " -config-file ${n}") configFiles;
+    in {
+      serviceConfig.ExecStart = pkgs.lib.mkForce updatedStart;
+    };
+
   services = {
     # Postgres SQL database
     postgresql = {
@@ -103,6 +116,7 @@ in {
     consul = {
       enable = true;
       extraConfig = {
+        bind_addr = "127.0.0.1"; # Use localhost, not some random docker ip
         server = true;
         bootstrap = true;
         services = [{

@@ -26,8 +26,8 @@
   nixpkgs.config.packageOverrides = pkgs: rec {
     jenkins = pkgs.jenkins.overrideDerivation( oldAttrs: {
       src = pkgs.fetchurl {
-        url = "http://mirrors.jenkins-ci.org/war/2.3/jenkins.war";
-        sha256 = "0x59dbvh6y25ki5jy51djbfbhf8g2j3yd9f3n66f7bkdfw8p78g1";
+        url = "http://mirrors.jenkins-ci.org/war/2.37/jenkins.war";
+        sha256 = "12jcpmka594qpn22s7x1p1kszd5bbp7y6x5a6ncvq30m093993yk";
       };
     });
 
@@ -140,6 +140,35 @@
           }
         }
 
+        # Jenkins
+        server {
+          listen 443;
+          server_name jenkins.cheapassbox.com;
+
+          ssl_certificate /etc/letsencrypt/live/jenkins.cheapassbox.com/fullchain.pem;
+          ssl_certificate_key /etc/letsencrypt/live/jenkins.cheapassbox.com/privkey.pem;
+          ssl_dhparam /etc/letsencrypt/live/jenkins.cheapassbox.com/dhparams.pem;
+
+          ssl on;
+          ssl_session_cache  builtin:1000  shared:SSL:10m;
+          ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+          ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+          ssl_prefer_server_ciphers on;
+
+          location / {
+            proxy_set_header        Host $host;
+            proxy_set_header        X-Real-IP $remote_addr;
+            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header        X-Forwarded-Proto $scheme;
+
+            # Fix the “It appears that your reverse proxy set up is broken" error.
+            proxy_pass          http://localhost:7789;
+            proxy_read_timeout  90;
+
+            proxy_redirect      http://localhost:7789 https://jenkins.cheapassbox.com;
+          }
+        }
+
         # grafana
         server {
           listen 443;
@@ -175,36 +204,6 @@
       }
     '';
 
-/*
-        # Jenkins
-        server {
-          listen 443;
-          server_name jenkins.cheapassbox.com;
-
-          ssl_certificate /etc/letsencrypt/live/jenkins.cheapassbox.com/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/jenkins.cheapassbox.com/privkey.pem;
-          ssl_dhparam /etc/letsencrypt/live/jenkins.cheapassbox.com/dhparams.pem;
-
-          ssl on;
-          ssl_session_cache  builtin:1000  shared:SSL:10m;
-          ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
-          ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
-          ssl_prefer_server_ciphers on;
-
-          location / {
-            proxy_set_header        Host $host;
-            proxy_set_header        X-Real-IP $remote_addr;
-            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header        X-Forwarded-Proto $scheme;
-
-            # Fix the “It appears that your reverse proxy set up is broken" error.
-            proxy_pass          http://localhost:7789;
-            proxy_read_timeout  90;
-
-            proxy_redirect      http://localhost:7789 https://jenkins.cheapassbox.com;
-          }
-        }
-      */
     enable = true;
   };
 
@@ -286,39 +285,6 @@
     };
   };
   */
-
-  services.redis.enable = true;
-  services.postgresql = {
-    enable = false;
-    package = pkgs.postgresql94;
-    authentication = "local all all ident";
-  };
-
-  services.consul = {
-    enable = true;
-    extraConfig = {
-      server = true;
-      bootstrap = true;
-      services = [{
-        name = "redis";
-        port = 6379;
-        address = "127.0.0.1";
-        checks = [{
-          name = "active";
-          script = "/var/run/current-system/sw/bin/systemctl is-active redis";
-          interval = "30s";
-        }];
-      }];
-    };
-  };
-
-  # Add consul to dns list
-  services.dnsmasq = {
-    enable  = true;
-    extraConfig = ''
-      server=/consul/127.0.0.1#8600
-    '';
-  };
 
   services.jenkins = {
     enable = true;
