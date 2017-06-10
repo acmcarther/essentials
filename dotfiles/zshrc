@@ -186,6 +186,7 @@ fi
 
 # Default nix shell to open zsh instead of bash
 alias nix-shell="nix-shell --command $SHELL"
+alias blaze='bazel'
 
 # Shortcut for tmux attaching
 alias tat='tmux attach -t'

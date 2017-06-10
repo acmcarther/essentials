@@ -33,6 +33,7 @@
 
     # Configure chromium for flash and pdf reading
     chromium = {
+      enablePepperFlash = false;
       enablePepperPdf = true;
     };
   };
@@ -65,6 +66,7 @@
       firefox                            # Backup browser
       fzf
       gcc
+      patchelf
       git                                # Git source control
       glxinfo                            # GFX Debug
       gnumake

@@ -83,6 +83,7 @@ autocmd BufNewFile,BufRead *.slim set filetype=slim
 autocmd FileType rust setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.rs set filetype=rust
 autocmd BufRead,BufNewFile *.rs.in set filetype=rust
+autocmd BufRead,BufNewFile *.BUILD set filetype=python
 autocmd FileType ls setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.ls set filetype=ls
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2
@@ -96,7 +97,7 @@ autocmd BufNewFile,BufRead *.capnp set filetype=capnp
 
 let g:go_fmt_autosave = 0
 let s:rust_src_path=$HOME . '/rust/src'
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 let g:ycm_rust_src_path=s:rust_src_path
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
