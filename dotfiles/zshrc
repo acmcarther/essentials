@@ -67,6 +67,9 @@ export PATH="$HOME/essentials/scripts/tools:$PATH"
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# node modules
+export PATH="$HOME/essentials/node_modules/.bin:$PATH"
+
 
 # Maybe fix jave applets & xmonad
 _JAVA_AWT_WM_NONREPARENTING=1

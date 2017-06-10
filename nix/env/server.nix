@@ -42,23 +42,27 @@ with import ../data/ssh-pub.nix {};
     hostId = "87813f15";
     # TODO(acmcarther): Justify each port inline
     firewall = {
-      allowedTCPPorts = [80 443 7789 8123 25980 5601 1900 9090 3000];
-      allowedUDPPorts = [80 443 7789 8123 25980 5601 1900 9090 3000];
+      allowedTCPPorts = [80 443 7789 8080 8123 25980 5601 1900 9090 3000];
+      allowedUDPPorts = [80 443 7789 8080 8123 25980 5601 1900 9090 3000];
     };
   };
 
   services = {
     kubernetes = {
       #roles = [ "master" "node" ];
+      #apiserver.securePort = 6443;
+      #apiserver.extraOpts = " --kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP";
     };
 
     openssh = {
       enable = true;
+      forwardX11 = true;
       ports = [ 25980 ];
       passwordAuthentication = false;
     };
 
     fail2ban.enable = false;
+    redis.enable = true;
   };
 
   users.users = {

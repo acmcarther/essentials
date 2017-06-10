@@ -3,7 +3,7 @@
 
 let
 
-  version = "0.4.2";
+  version = "0.4.5";
 
   meta = with stdenv.lib; {
     homepage = http://github.com/bazelbuild/bazel/;
@@ -34,11 +34,11 @@ let
       #sha256 = "13lqmjg9w9cjvrpyiba8qkldxqyczxyi8pcz8mfgq8nd06y2fs6p";
     #};
     src = fetchurl {
-      url = "https://github.com/bazelbuild/bazel/releases/download/0.4.2/bazel-0.4.2-dist.zip";
-      sha256 = "0dnvziz6q63a5ikpi9gh8qnb2pxlqh792zx0qwndpp5s58jl2vwf";
+      url = "https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-dist.zip";
+      sha256 = "0asmq3kxnl4326zhgh13mvcrc8jvmiswjj4ymrq0943q4vj7nwrb";
     };
     sourceRoot = ".";
-    patches = [ ./java_stub_template.patch ./allow_overriding_sh.patch ];
+    patches = [ ./allow_overriding_sh.patch ./fix_shebangs.patch ];
 
     packagesNotFromEnv = [
         stdenv.cc stdenv.cc.cc.lib jdk which zip unzip binutils ];

@@ -32,7 +32,7 @@ let
   '';
 in {
   services.nginx = {
-    enable = false;
+    enable = true;
     config = ''
       http {
         server {

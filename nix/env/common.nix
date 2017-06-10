@@ -45,6 +45,7 @@
     systemPackages = with pkgs; [
       arandr                             # GUI frontend for xrandr monitor configuration
       awscli                             # AWS command line interface
+      bazel-custom
       baobab                             # Disk usage analyser
       bc                                 # Basic calculator
       bind                               # Provides `dig` dns lookup util
@@ -57,6 +58,7 @@
       cups-bjnp                          # Printer Support (Canon Printer)
       deadbeef-with-plugins              # music player
       elixir
+      pkgconfig
       ffmpeg                             # Video recording/converting/streaming
       ffmpeg-full                        # Video recording/converting/streaming
       file                               # Determine type of file
@@ -71,6 +73,8 @@
       google-chrome                      # Primary browser
       gutenprint                         # printer
       gutenprintBin                      # more printer
+      openssl
+      openssl.dev
       hicolor_icon_theme                 # Default theme for thunar
       htop                               # System monitor
       imagemagick                        # Image manip library
@@ -87,6 +91,8 @@
       powertop                           # See power consumption
       protobuf
       pulseaudioFull                     # Audio drivers + support
+      zlib
+      zlib.dev
       python27                           # Python programming language
       python27Packages.pip               # Python package manager
       python27Packages.virtualenv
