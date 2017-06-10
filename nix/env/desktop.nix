@@ -10,12 +10,12 @@ with import ../data/ssh-pub.nix {};
 
   environment.systemPackages = with pkgs; [
     playonlinux                        # Wine DirectX/Syscall
+    prometheus
+    prometheus-node-exporter
+    protobuf
     steam                              # Games
     teamspeak_client                   # Team voice chat
     vulkan-loader                      # Vulkan gfxlib api
-    prometheus-node-exporter
-    protobuf
-    prometheus
   ];
 
   hardware = {

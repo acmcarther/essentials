@@ -46,55 +46,53 @@
     systemPackages = with pkgs; [
       arandr                             # GUI frontend for xrandr monitor configuration
       awscli                             # AWS command line interface
-      bazel-custom
       baobab                             # Disk usage analyser
+      bazel-custom                       # Bazel build tool
       bc                                 # Basic calculator
       bind                               # Provides `dig` dns lookup util
       bundix                             # Structured Ruby package manager
       byzanz                             # Screen recording software
-      cargoLatest
+      cargoLatest                        # Rust default build tool
       chromium                           # Browser
-      cmake
+      cmake                              # Cmake build tool
       cups                               # Printer Support
       cups-bjnp                          # Printer Support (Canon Printer)
       deadbeef-with-plugins              # music player
-      elixir
-      pkgconfig
+      elixir                             # Support for the Elixir language
       ffmpeg                             # Video recording/converting/streaming
       ffmpeg-full                        # Video recording/converting/streaming
       file                               # Determine type of file
       firefox                            # Backup browser
-      fzf
-      gcc
-      patchelf
+      fzf                                # Fuzzy file Finder
+      gcc                                # C compiler
       git                                # Git source control
       glxinfo                            # GFX Debug
-      gnumake
-      go
-      godep
+      gnumake                            # Make build system
+      go                                 # Support for the go language
+      godep                              # Go dependency management tool
       google-chrome                      # Primary browser
       gutenprint                         # printer
       gutenprintBin                      # more printer
-      openssl
-      openssl.dev
       hicolor_icon_theme                 # Default theme for thunar
       htop                               # System monitor
       imagemagick                        # Image manip library
       irssi                              # Irc client
       live555                            # RTSP libs for
       mplayer                            # Video player
-      ngrok
+      ngrok                              # Ad-hoc LAN to WAN port forwarding
       nix-repl                           # Repl for nix package manager
       nodejs                             # Node.js event driven JS framework
-      openjdk8
+      openjdk8                           # Java language support
+      openssl                            # Openssl
+      openssl.dev                        # Openssl developer libs
+      patchelf                           # Nix binary patching util
       pavucontrol                        # Audio volume mixer
       pcmanfm                            # Lightweight file browser
       pinta                              # Simple paint program
+      pkgconfig                          # Crossplat dependency locator
       powertop                           # See power consumption
-      protobuf
+      protobuf                           # Cross-language data protocol format support
       pulseaudioFull                     # Audio drivers + support
-      zlib
-      zlib.dev
       python27                           # Python programming language
       python27Packages.pip               # Python package manager
       python27Packages.virtualenv
@@ -123,6 +121,8 @@
       which                              # Dependency for fzf.vim
       xclip                              # Clipboard command line util
       xdotool                            # Diagnostic for Mouse & KB
+      zlib                               # Compression support
+      zlib.dev
     ];
   };
 

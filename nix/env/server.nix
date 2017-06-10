@@ -12,22 +12,22 @@ with import ../data/ssh-pub.nix {};
 
   environment.systemPackages = with pkgs; [
     bind                             # DNS lookup util
-    openssl
+    elinks
+    jenkins
+    letsencrypt                      # Auto SSL Cert
+    logstash
+    lynx
     miniupnpc
     miniupnpd
-    letsencrypt                      # Auto SSL Cert
-    elinks
-    lynx
-    pavucontrol
-    python35
-    prometheus
-    snort
-    prometheus-node-exporter
-    logstash
-    wireshark
     mrxvt
-    jenkins
+    openssl
+    pavucontrol
+    prometheus
+    prometheus-node-exporter
+    python35
+    snort
     vlc
+    wireshark
   ];
 
   hardware = {

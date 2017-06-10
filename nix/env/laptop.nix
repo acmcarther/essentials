@@ -18,10 +18,10 @@ with import ../data/ssh-pub.nix {};
 
   environment.systemPackages = with pkgs; [
     bumblebee                          # GFX device multiplexing
-    tlp                                # Power management
     playonlinux                        # Wine DirectX/Syscall
     steam                              # Games
     teamspeak_client                   # Team voice chat
+    tlp                                # Power management
   ];
 
   # Enable direct rendering for 32 bit applications
