@@ -7,7 +7,7 @@
 {
   imports =
     [
-      ./nix/env/server.nix
       /etc/nixos/hardware-configuration.nix
+      ./nix/env/server.nix
     ];
 }

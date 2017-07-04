@@ -73,7 +73,7 @@ function build_status  {
     buf="${buf} $(cpuload) |"
     buf="${buf} $(memused) |"
     buf="${buf} $(volume) |"
-    #buf="${buf} $(battery) |"
+    buf="${buf} $(battery) |"
     buf="${buf} $(clock)"
 
     echo $buf

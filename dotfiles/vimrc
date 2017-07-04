@@ -90,6 +90,7 @@ autocmd FileType pug setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.jade set filetype=pug
 autocmd BufRead,BufNewFile *.pug set filetype=pug
 autocmd FileType scala setlocal shiftwidth=2 tabstop=2
+autocmd FileType python setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.scala set filetype=scala
 autocmd BufRead,BufNewFile *.elm set filetype=elm
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee

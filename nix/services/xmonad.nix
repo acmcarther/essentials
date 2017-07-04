@@ -21,15 +21,15 @@
     xorg.xbacklight                    # Backlight modification utility
   ];
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    font-awesome-ttf = pkgs.font-awesome-ttf.overrideDerivation (attrs: {
-      name = "font-awesome-4.5.0";
-      src = pkgs.fetchurl {
-        url = "https://github.com/FortAwesome/Font-Awesome/archive/v4.5.0.zip";
-        sha256 = "04jp213iwpc8bfn0vgkf36pwafwcgx65gvam7wfd36522l19ldy6";
-      };
-    });
-  };
+  #nixpkgs.config.packageOverrides = pkgs: {
+    #font-awesome-ttf = pkgs.font-awesome-ttf.overrideDerivation (attrs: {
+      #name = "font-awesome-4.5.0";
+      #src = pkgs.fetchurl {
+        #url = "https://github.com/FortAwesome/Font-Awesome/archive/v4.5.0.zip";
+        #sha256 = "04jp213iwpc8bfn0vgkf36pwafwcgx65gvam7wfd36522l19ldy6";
+      #};
+    #});
+  #};
 
   services = {
     # Disk mounting

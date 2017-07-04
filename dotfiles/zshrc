@@ -70,6 +70,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # node modules
 export PATH="$HOME/essentials/node_modules/.bin:$PATH"
 
+# Go bins
+export PATH="$HOME/go/bin:$PATH"
+
 
 # Maybe fix jave applets & xmonad
 _JAVA_AWT_WM_NONREPARENTING=1

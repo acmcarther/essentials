@@ -44,6 +44,7 @@
     };
 
     systemPackages = with pkgs; [
+      inotify-tools                      # Linux tools for detecting file changes
       arandr                             # GUI frontend for xrandr monitor configuration
       awscli                             # AWS command line interface
       baobab                             # Disk usage analyser

@@ -2,7 +2,6 @@
   which, makeWrapper, binutils }:
 
 let
-
   version = "0.4.5";
 
   meta = with stdenv.lib; {
@@ -24,15 +23,6 @@ let
   bazelBinary = stdenv.mkDerivation rec {
     name = "bazel-${version}";
 
-    #src = fetchFromGitHub {
-      #owner = "bazelbuild";
-      #repo = "bazel";
-      #rev = version;
-      # 0.3.2
-      #sha256 = "085cjz0qhm4a12jmhkjd9w3ic4a67035j01q111h387iklvgn6xg";
-      # 0.4.2
-      #sha256 = "13lqmjg9w9cjvrpyiba8qkldxqyczxyi8pcz8mfgq8nd06y2fs6p";
-    #};
     src = fetchurl {
       url = "https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-dist.zip";
       sha256 = "0asmq3kxnl4326zhgh13mvcrc8jvmiswjj4ymrq0943q4vj7nwrb";
