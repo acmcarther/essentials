@@ -26,6 +26,8 @@ Plugin 'sjl/vitality.vim'                 " Compatability fixes for focus in tmu
 Plugin 'tmhedberg/matchit'                " % matching for words and regex
 Plugin 'tomtom/tlib_vim'                  " Util functions for other plugins
 Plugin 'vim-scripts/tComment'             " Utilities for commenting/uncommenting lines and blocks
+Plugin 'tpope/vim-obsession'              " Session saving/persistence -- especially functional with tmux-resurrect
+
 
 "" Tiny Plugins
 Plugin 'airblade/vim-gitgutter'           " Shows git diff (+/-/~) in sidebar
@@ -95,6 +97,7 @@ autocmd BufRead,BufNewFile *.scala set filetype=scala
 autocmd BufRead,BufNewFile *.elm set filetype=elm
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *.capnp set filetype=capnp
+autocmd BufNewFile,BufRead *.html.eex set filetype=html
 
 let g:go_fmt_autosave = 0
 let s:rust_src_path=$HOME . '/rust/src'

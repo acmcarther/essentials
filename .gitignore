@@ -5,3 +5,6 @@ dotfiles/xmonad/xmonad.errors
 dotfiles/xmonad/xmonad-x86_64-linux
 */**/*.hi
 */**/*.o
+dotfiles/tmux/resurrect/last
+dotfiles/tmux/resurrect/pane_contents.tar.gz
+dotfiles/tmux/resurrect/tmux_resurrect*

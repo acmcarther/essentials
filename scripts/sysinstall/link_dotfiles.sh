@@ -8,7 +8,7 @@
 
 dir=~/essentials/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc compton.conf gitconfig irssi tmux.conf vimrc xbindkeysrc xinitrc xmonad Xresources zshrc"    # list of files/folders to symlink in homedir
+files="bashrc compton.conf gitconfig irssi tmux.conf vimrc xbindkeysrc xinitrc xmonad Xresources zshrc tmux"    # list of files/folders to symlink in homedir
 
 ##########
 

@@ -101,7 +101,7 @@ myLayout = windowNavigation
          $ mkToggle1 FLOATED
          $ avoidStruts all
            where
-             all = spacing 15 BSP.emptyBSP
+             all = spacing 5 BSP.emptyBSP
 
 myWorkspaces = ["1. Alpha"
                ,"2. Beta"
@@ -162,7 +162,7 @@ scratchpads = [ NS "htop" "urxvt -name htop -e htop" (resource =? "htop") defaul
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
 myXmonadBar :: String
-myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | lemonbar -f \"Ubuntu Mono:medium:pixelsize=20\" -f \"FontAwesome:medium:pixelsize=15\" -B \"#00000000\" | bash"
+myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | lemonbar -f \"Ubuntu Mono:medium:pixelsize=20\" -B \"#00000000\" | bash"
 --myXmonadBar = "~/essentials/scripts/lemonbar/header_bar.sh | bar -B \"black\" | bash"
 
 restartXmonad = "killall lemonbar; cd ~/.xmonad; ghc -threaded xmonad.hs; mv xmonad xmonad-x86_64-linux; xmonad --restart;"
@@ -177,6 +177,8 @@ toBarC ""      = ""
 main :: IO ()
 main = do
   bar <- spawnPipe myXmonadBar
+  -- This is a hack to keep xmonad from clearing shell-populated content
+  bar2 <- spawnPipe myXmonadBar
   xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
     { terminal           = myTerminal
     , borderWidth        = 0
@@ -188,7 +190,7 @@ main = do
     , manageHook         = newManageHook
     , handleEventHook    = fullscreenEventHook <+> docksEventHook
     , startupHook        = setWMName "LG3D"
-    , logHook            = myLogHook bar  >> fadeInactiveLogHook 0.95
+    , logHook            = myLogHook bar
     }
 --------------------------------------------------------------------------------------------------------------------
 -- Keyboard options

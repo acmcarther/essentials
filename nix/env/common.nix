@@ -141,6 +141,19 @@
     Defaults env_keep+="HOME"
   '';
 
+  systemd.services.tmux = {
+    enable = true;
+    description = "Run default tmux terminal multiplexer session";
+    after = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "forking";
+      ExecStart = "${pkgs.tmux}/bin/tmux new-session -d";
+      RemainAfterExit = true;
+    };
+  };
+
+
   services = {
     # Configure physlock screen locker
     physlock = {
@@ -156,7 +169,10 @@
   };
 
 
-  time.timeZone = "US/Pacific";
+  time = {
+    hardwareClockInLocalTime = true;
+    timeZone = "US/Pacific";
+  };
 
   users = {
     defaultUserShell = "/run/current-system/sw/bin/zsh";
