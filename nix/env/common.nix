@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../packages/overrides.nix ];
+  imports = [
+    ../packages/overrides.nix
+  ];
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -43,6 +45,11 @@
     };
 
     systemPackages = with pkgs; [
+      concourse-fly
+      nixops
+      kubernetes
+      google-cloud-sdk
+      graphviz
       arandr                             # GUI frontend for xrandr monitor configuration
       awscli                             # AWS command line interface
       bazel-custom

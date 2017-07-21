@@ -8,6 +8,7 @@ with import ../data/ssh-pub.nix {};
       ../services/grafana.nix
       ../services/nginx.nix
       ../services/xmonad.nix
+      ../services/concourse.nix
     ];
 
   environment.systemPackages = with pkgs; [
@@ -27,6 +28,7 @@ with import ../data/ssh-pub.nix {};
     wireshark
     mrxvt
     jenkins
+    concourse
     vlc
   ];
 
@@ -56,13 +58,25 @@ with import ../data/ssh-pub.nix {};
 
     openssh = {
       enable = true;
-      forwardX11 = true;
+      forwardX11 = false;
       ports = [ 25980 ];
       passwordAuthentication = false;
     };
 
     fail2ban.enable = false;
     redis.enable = true;
+
+    postgresql = {
+      enable = true;
+      initialScript = pkgs.writeText"postgresql-init.sql"
+        ''
+        CREATE ROLE postgres WITH superuser login createdb
+        '';
+    };
+
+    concourse = {
+      enable = true;
+    };
   };
 
   users.users = {
