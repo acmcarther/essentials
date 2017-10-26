@@ -17,12 +17,6 @@ let rustNightlyNixRepo = pkgs.fetchFromGitHub {
   };
 in {
   nixpkgs.config.packageOverrides = pkgs: rec {
-    gdb = pkgs.gdb.overrideDerivation(oldAttrs:{
-      src = pkgs.fetchurl {
-        url = "mirror://gnu/gdb/gdb-7.12.tar.xz";
-        sha256 = "152g2qa8337cxif3lkvabjcxfd9jphfb2mza8f1p2c4bjk2z6kw3";
-      };
-    });
     cargoLatest = rustPackages.cargo { date = "2016-10-28"; };
     rustcLatest = rustcLatestBuilder { buildDate = "2017-03-16"; };
     bazel-custom = import ./bazel/default.nix {
@@ -31,3 +25,4 @@ in {
     };
   };
 }
+
