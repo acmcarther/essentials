@@ -69,7 +69,6 @@ htop='xdotool key super+F9'
 # This loop will fill a buffer with our infos, and output it to stdout.
 function build_status  {
     buf="%{r}%{F#FF6A9FB5}"
-    buf="${buf} $(wifi)"
     buf="${buf} $(cpuload) |"
     buf="${buf} $(memused) |"
     buf="${buf} $(volume) |"
