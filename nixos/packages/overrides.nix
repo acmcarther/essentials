@@ -19,6 +19,10 @@ in {
   nixpkgs.config.packageOverrides = pkgs: rec {
     cargoLatest = rustPackages.cargo { date = "2016-10-28"; };
     rustcLatest = rustcLatestBuilder { buildDate = "2017-03-16"; };
+    kubecfg = import ./kubecfg.nix {
+      inherit (pkgs) stdenv fetchFromGitHub buildFHSUserEnv writeScript jdk zip unzip lib buildGoPackage;
+      inherit (pkgs) which makeWrapper binutils fetchurl;
+    };
     bazel-custom = import ./bazel/default.nix {
       inherit (pkgs) stdenv fetchFromGitHub buildFHSUserEnv writeScript jdk zip unzip;
       inherit (pkgs) which makeWrapper binutils fetchurl;

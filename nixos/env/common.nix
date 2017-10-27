@@ -44,6 +44,8 @@
     };
 
     systemPackages = with pkgs; [
+      kubecfg
+      kubernetes-helm
       kubernetes
       inotify-tools # Linux tools for detecting file changes
       arandr # GUI frontend for xrandr monitor configuration
