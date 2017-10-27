@@ -26,7 +26,7 @@ with import ../data/ssh-pub.nix {};
   };
 
   environment.systemPackages = with pkgs; [
-    bumblebee                          # GFX device multiplexing
+    #bumblebee                          # GFX device multiplexing
     playonlinux                        # Wine DirectX/Syscall
     steam                              # Games
     teamspeak_client                   # Team voice chat
@@ -54,11 +54,15 @@ with import ../data/ssh-pub.nix {};
         CREATE ROLE postgres WITH superuser login createdb
         '';
     };
-    xserver.libinput = {
-      enable = true;
-      middleEmulation = true;
-      naturalScrolling = false;
-      tapping = true;
+    xserver = {
+      libinput = {
+        enable = true;
+        middleEmulation = true;
+        naturalScrolling = false;
+        tapping = true;
+      };
+
+      videoDrivers = [ "intel" ];
     };
   };
   users.users.guest.openssh.authorizedKeys.keys = [
