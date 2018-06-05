@@ -13,7 +13,7 @@ with import ../data/ssh-pub.nix {};
     pulseaudio.enable = true;
 
     # Enable bluetooth
-    bluetooth.enable = true;
+    bluetooth.enable = false;
 
     # Enable direct rendering for 32 bit applications
     #   Required to run steam games on 64 bit system
@@ -22,21 +22,22 @@ with import ../data/ssh-pub.nix {};
       driSupport32Bit = true;
     };
 
-    bumblebee.enable = false;
+    bumblebee = {
+      enable = false;
+      connectDisplay = false;
+    };
   };
 
   environment.systemPackages = with pkgs; [
-    #bumblebee                          # GFX device multiplexing
-    playonlinux                        # Wine DirectX/Syscall
-    steam                              # Games
-    teamspeak_client                   # Team voice chat
     tlp                                # Power management
+    powerstat
   ];
 
   networking = {
     hostName = "bbq"; # Define your hostname.
     hostId = "87813f15";
   };
+
 
   services = {
     openssh = {
@@ -48,7 +49,7 @@ with import ../data/ssh-pub.nix {};
     tlp.enable = true;
 
     postgresql = {
-      enable = true;
+      enable = false;
       initialScript = pkgs.writeText"postgresql-init.sql"
         ''
         CREATE ROLE postgres WITH superuser login createdb

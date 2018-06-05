@@ -12,7 +12,7 @@
     compton                            # Windowing system for niceness
     dmenu                              # Application launcher
     feh                                # Wallpaper manager
-    python27Packages.udiskie
+    udiskie
     unclutter                          # Mouse hider
     haskellPackages.xmonad
     haskellPackages.xmonad-contrib

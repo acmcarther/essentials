@@ -3,8 +3,8 @@
 let rustNightlyNixRepo = pkgs.fetchFromGitHub {
      owner = "solson";
      repo = "rust-nightly-nix";
-     rev = "9e09d579431940367c1f6de9463944eef66de1d4";
-     sha256 = "03zkjnzd13142yla52aqmgbbnmws7q8kn1l5nqaly22j31f125xy";
+     rev = "7081bacc88037d9e218f62767892102c96b0a321";
+     sha256 = "0dzqmbwl2fkrdhj3vqczk7fqah8q7mfn40wx9vqavcgcsss63m8p";
   };
   rustPackages = pkgs.callPackage rustNightlyNixRepo { };
   rustcLatestBuilder = {buildDate}: rustPackages.rustcWithSysroots {
@@ -17,9 +17,9 @@ let rustNightlyNixRepo = pkgs.fetchFromGitHub {
   };
 in {
   nixpkgs.config.packageOverrides = pkgs: rec {
-    cargoLatest = rustPackages.cargo { date = "2016-10-28"; };
-    rustcLatest = rustcLatestBuilder { buildDate = "2017-03-16"; };
-    kubecfg = import ./kubecfg.nix {
+    cargoLatest = rustPackages.cargo { date = "2018-02-01"; };
+    rustcLatest = rustcLatestBuilder { buildDate = "2018-02-01"; };
+    ksonnet = import ./ksonnet.nix {
       inherit (pkgs) stdenv fetchFromGitHub buildFHSUserEnv writeScript jdk zip unzip lib buildGoPackage;
       inherit (pkgs) which makeWrapper binutils fetchurl;
     };

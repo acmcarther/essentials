@@ -19,17 +19,14 @@ clock() {
 
 battery() {
     BATC=/sys/class/power_supply/BAT0/capacity
-    BATS=/sys/class/power_supply/BAT0/status
 
     cap="$(sed -n p $BATC)"
-    green_decimal=$((128 + (128 * $cap) / 101))
-    red_decimal=$((128 + (128 * (100 - $cap)) / 101))
-    red_hex=$(echo "obase=16; $red_decimal" | bc)
-    green_hex=$(echo "obase=16; $green_decimal" | bc)
-
-    test "`cat $BATS`" = "Charging" && echo -n "%{F#FFFFFFFF}$plug_icon " || echo -n "%{F#FFFFFF00}$thunderbolt_icon "
-
-    echo "%{F#FF${red_hex}${green_hex}80}$cap%%{F#FF6A9FB5}"
+    #green_decimal=$((128 + (128 * $cap) / 101))
+    #red_decimal=$((128 + (128 * (100 - $cap)) / 101))
+    #red_hex=$(echo "obase=16; $red_decimal" | bc)
+    #green_hex=$(echo "obase=16; $green_decimal" | bc)
+    #echo "%{F#FF${red_hex}${green_hex}80}$cap%%{F#FF6A9FB5}"
+    echo "$cap%%{F#FF6A9FB5}"
 }
 
 volume() {
@@ -48,20 +45,6 @@ memused() {
   echo "%{F#FF80E6FF}$ram_icon $mem%{F#FF6A9FB5}"
 }
 
-wifi() {
-  current_wifi=$(nmcli -t --fields NAME con show --active)
-  echo "%{F#FFB8D4DC}$wifi_icon $current_wifi%{F#FF6A9FB5} |"
-}
-
-groups() {
-    cur=`xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}'`
-    tot=`xprop -root _NET_NUMBER_OF_DESKTOPS | awk '{print $3}'`
-
-    for w in `seq 0 $((cur - 1))`; do line="${line}="; done
-    line="${line}|"
-    for w in `seq $((cur + 2)) $tot`; do line="${line}="; done
-    echo $line
-}
 
 
 alsamixer='xdotool key super+F10'
@@ -69,9 +52,9 @@ htop='xdotool key super+F9'
 # This loop will fill a buffer with our infos, and output it to stdout.
 function build_status  {
     buf="%{r}%{F#FF6A9FB5}"
-    buf="${buf} $(cpuload) |"
-    buf="${buf} $(memused) |"
-    buf="${buf} $(volume) |"
+    #buf="${buf} $(cpuload) |"
+    #buf="${buf} $(memused) |"
+    #buf="${buf} $(volume) |"
     buf="${buf} $(battery) |"
     buf="${buf} $(clock)"
 

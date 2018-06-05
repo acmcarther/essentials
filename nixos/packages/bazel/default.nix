@@ -2,7 +2,7 @@
   which, makeWrapper, binutils }:
 
 let
-  version = "0.4.5";
+  version = "0.14.0";
 
   meta = with stdenv.lib; {
     homepage = http://github.com/bazelbuild/bazel/;
@@ -25,7 +25,7 @@ let
 
     src = fetchurl {
       url = "https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-dist.zip";
-      sha256 = "0asmq3kxnl4326zhgh13mvcrc8jvmiswjj4ymrq0943q4vj7nwrb";
+      sha256 = "1asmq3kxnl4326zhgh13mvcrc8jvmiswjj4ymrq0943q4vj7nwrb";
     };
     sourceRoot = ".";
     patches = [ ./allow_overriding_sh.patch ./fix_shebangs.patch ];
@@ -52,6 +52,7 @@ let
     '';
 
     installPhase = ''
+
       mkdir -p $out/bin
       cp output/bazel $out/bin/
       wrapProgram $out/bin/bazel \

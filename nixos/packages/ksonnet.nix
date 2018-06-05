@@ -4,20 +4,20 @@
 with lib;
 
 buildGoPackage rec {
-  name = "kubecfg-2169ce8";
+  name = "ksonnet-b70c996";
 
-  goPackagePath = "github.com/ksonnet/kubecfg";
+  goPackagePath = "github.com/ksonnet/ksonnet";
 
   src = fetchFromGitHub {
-    rev = "2169ce8";
+    rev = "b70c996";
     owner = "ksonnet";
-    repo = "kubecfg";
-    sha256 = "0mp1ngnj8j4q8bbcda8lvckqlwr5lnwrica2jjs4825qbmcg392j";
+    repo = "ksonnet";
+    sha256 = "13wkd08ds2n4w2wp6bc4f1hkhwgl6yb06yd08m1w8mlmjdb0zxy6";
   };
 
   meta = {
     description = "A tool for managing Kubernetes resources as code.";
-    homepage = https://github.com/ksonnet/kubecfg;
+    homepage = https://github.com/ksonnet/ksonnet;
     platforms = platforms.unix;
   };
 }

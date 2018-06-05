@@ -53,6 +53,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'rust-lang/rust.vim'
 Plugin 'cstrahan/vim-capnp'
+Plugin 'google/vim-jsonnet'
 
 call vundle#end()
 filetype plugin indent on
@@ -98,6 +99,8 @@ autocmd BufRead,BufNewFile *.elm set filetype=elm
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *.capnp set filetype=capnp
 autocmd BufNewFile,BufRead *.html.eex set filetype=html
+autocmd BufNewFile,BufRead *.jsonnet set filetype=jsonnet
+autocmd BufNewFile,BufRead *.libsonnet set filetype=jsonnet
 
 let g:go_fmt_autosave = 0
 let s:rust_src_path=$HOME . '/rust/src'

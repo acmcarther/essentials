@@ -44,19 +44,24 @@
     };
 
     systemPackages = with pkgs; [
-      kubecfg
+      google-chrome
+      networkmanager
+      openvpn
+      postgresql
+      gnome3.nautilus
+      ksonnet
       kubernetes-helm
       kubernetes
       inotify-tools # Linux tools for detecting file changes
       arandr # GUI frontend for xrandr monitor configuration
       awscli # AWS command line interface
       baobab # Disk usage analyser
-      #bazel-custom # Bazel build tool
+      bazel # Bazel build tool
       bc # Basic calculator
       bind # Provides `dig` dns lookup util
       bundix # Structured Ruby package manager
       byzanz # Screen recording software
-      #cargoLatest # Rust default build tool
+      cargoLatest # Rust default build tool
       chromium # Browser
       cmake # Cmake build tool
       cups # Printer Support
@@ -106,11 +111,10 @@
       python35Packages.virtualenv
       #rr
       ruby # Ruby programming language
-      #rustcLatest
+      rustcLatest
       rxvt_unicode-with-plugins # Terminal emulator
       scrot # Screenshot capturing
       silver-searcher # Code searching tool
-      skype # IM and Web chat
       sqlite # sqlite database
       sshfsFuse # FS over SSH
       taskwarrior # Task management TODO: Remove if not used
@@ -170,6 +174,8 @@
     # Enable CUPS to print documents.
     printing.enable = true;
   };
+
+  #system.nixos.stateVersion = "18.03";
 
 
   time = {

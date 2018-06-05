@@ -22,6 +22,7 @@ compinit
 # End of lines added by compinstall
 
 alias tmux="TERM=rxvt-unicode-256color tmux"
+alias vi="vim"
 
 # Set up theme
 ZSH_THEME="doubleend"
@@ -72,6 +73,10 @@ export PATH="$HOME/essentials/node_modules/.bin:$PATH"
 
 # Go bins
 export PATH="$HOME/go/bin:$PATH"
+
+alias gco="git checkout "
+alias gcm="git commit -m "
+alias gs="git status"
 
 
 # Maybe fix jave applets & xmonad
