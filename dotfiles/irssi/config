@@ -33,16 +33,6 @@ servers = (
     chatnet = "Undernet";
     port = "6667";
   },
-  {
-    address = "irc.iximeow.net";
-    chatnet = "andynet";
-    port = "6697";
-    use_ssl = "yes";
-    ssl_verify = "no";
-    password = "itjustworks";
-    autoconnect = "yes";
-    password = "itjustworks";
-  }
 );
 
 chatnets = {
